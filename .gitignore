@@ -1,3 +1,5 @@
 tools/
 .ipynb_checkpoints/
 __pycache__/
+results/generations/_*/
+results/_*.log
