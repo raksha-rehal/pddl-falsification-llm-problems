@@ -1,0 +1,140 @@
+Type-checking navigate
+...action passes type checking.
+Type-checking recharge
+...action passes type checking.
+Type-checking sample_soil
+...action passes type checking.
+Type-checking sample_rock
+...action passes type checking.
+Type-checking drop
+...action passes type checking.
+Type-checking calibrate
+...action passes type checking.
+Type-checking take_image
+...action passes type checking.
+Type-checking communicate_soil_data
+...action passes type checking.
+Type-checking communicate_rock_data
+...action passes type checking.
+Type-checking communicate_image_data
+...action passes type checking.
+Checking plan: /home/jovyan/Desktop/pddl-falsification-llm-problems/results/nominal/instance-3.plan
+Plan to validate:
+
+Plan size: 11
+1:
+(navigate rover1 waypoint3 waypoint0)
+ 
+2:
+(calibrate rover1 camera1 objective0 waypoint0)
+ 
+3:
+(take_image rover1 waypoint0 objective0 camera1 colour)
+ 
+4:
+(sample_rock rover1 rover1store waypoint0)
+ 
+5:
+(navigate rover1 waypoint0 waypoint3)
+ 
+6:
+(drop rover1 rover1store)
+ 
+7:
+(navigate rover1 waypoint3 waypoint2)
+ 
+8:
+(sample_soil rover1 rover1store waypoint2)
+ 
+9:
+(communicate_soil_data rover1 general waypoint2 waypoint2 waypoint0)
+ 
+10:
+(communicate_rock_data rover1 general waypoint0 waypoint2 waypoint0)
+ 
+11:
+(communicate_image_data rover1 general objective0 colour waypoint2 waypoint0)
+ 
+
+Plan Validation details
+-----------------------
+
+Checking next happening (time 1)
+Deleting (at rover1 waypoint3)
+Adding (at rover1 waypoint0)
+Updating (energy rover1) (50) by 8 decrease
+
+Checking next happening (time 2)
+Adding (calibrated camera1 rover1)
+Updating (energy rover1) (42) by 2 decrease
+
+Checking next happening (time 3)
+Deleting (calibrated camera1 rover1)
+Adding (have_image rover1 objective0 colour)
+Updating (energy rover1) (40) by 1 decrease
+
+Checking next happening (time 4)
+Deleting (empty rover1store)
+Deleting (at_rock_sample waypoint0)
+Adding (full rover1store)
+Adding (have_rock_analysis rover1 waypoint0)
+Updating (energy rover1) (39) by 5 decrease
+
+Checking next happening (time 5)
+Deleting (at rover1 waypoint0)
+Adding (at rover1 waypoint3)
+Updating (energy rover1) (34) by 8 decrease
+
+Checking next happening (time 6)
+Deleting (full rover1store)
+Adding (empty rover1store)
+
+Checking next happening (time 7)
+Deleting (at rover1 waypoint3)
+Adding (at rover1 waypoint2)
+Updating (energy rover1) (26) by 8 decrease
+
+Checking next happening (time 8)
+Deleting (empty rover1store)
+Deleting (at_soil_sample waypoint2)
+Adding (full rover1store)
+Adding (have_soil_analysis rover1 waypoint2)
+Updating (energy rover1) (18) by 3 decrease
+
+Checking next happening (time 9)
+WARNING: (communicate_soil_data rover1 general waypoint2 waypoint2 waypoint0) adds and deletes the literal (available rover1)
+WARNING: (communicate_soil_data rover1 general waypoint2 waypoint2 waypoint0) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_soil_data waypoint2)
+Adding (available rover1)
+Updating (energy rover1) (15) by 4 decrease
+
+Checking next happening (time 10)
+WARNING: (communicate_rock_data rover1 general waypoint0 waypoint2 waypoint0) adds and deletes the literal (available rover1)
+WARNING: (communicate_rock_data rover1 general waypoint0 waypoint2 waypoint0) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_rock_data waypoint0)
+Adding (available rover1)
+Updating (energy rover1) (11) by 4 decrease
+
+Checking next happening (time 11)
+WARNING: (communicate_image_data rover1 general objective0 colour waypoint2 waypoint0) adds and deletes the literal (available rover1)
+WARNING: (communicate_image_data rover1 general objective0 colour waypoint2 waypoint0) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_image_data objective0 colour)
+Adding (available rover1)
+Updating (energy rover1) (7) by 6 decrease
+Plan executed successfully - checking goal
+Plan valid
+Final value: 0 
+
+Successful plans:
+Value: 0
+ /home/jovyan/Desktop/pddl-falsification-llm-problems/results/nominal/instance-3.plan 0 
+

@@ -1,0 +1,426 @@
+Type-checking navigate
+...action passes type checking.
+Type-checking recharge
+...action passes type checking.
+Type-checking sample_soil
+...action passes type checking.
+Type-checking sample_rock
+...action passes type checking.
+Type-checking drop
+...action passes type checking.
+Type-checking calibrate
+...action passes type checking.
+Type-checking take_image
+...action passes type checking.
+Type-checking communicate_soil_data
+...action passes type checking.
+Type-checking communicate_rock_data
+...action passes type checking.
+Type-checking communicate_image_data
+...action passes type checking.
+Checking plan: /home/jovyan/Desktop/pddl-falsification-llm-problems/results/nominal/instance-10.plan
+Plan to validate:
+
+Plan size: 41
+1:
+(navigate rover0 waypoint4 waypoint6)
+ 
+2:
+(calibrate rover1 camera2 objective1 waypoint0)
+ 
+3:
+(sample_soil rover1 rover1store waypoint0)
+ 
+4:
+(sample_rock rover2 rover2store waypoint3)
+ 
+5:
+(navigate rover1 waypoint0 waypoint2)
+ 
+6:
+(communicate_soil_data rover1 general waypoint0 waypoint2 waypoint1)
+ 
+7:
+(sample_soil rover0 rover0store waypoint6)
+ 
+8:
+(drop rover0 rover0store)
+ 
+9:
+(navigate rover2 waypoint3 waypoint4)
+ 
+10:
+(navigate rover0 waypoint6 waypoint4)
+ 
+11:
+(navigate rover3 waypoint1 waypoint0)
+ 
+12:
+(sample_rock rover3 rover3store waypoint0)
+ 
+13:
+(communicate_soil_data rover0 general waypoint6 waypoint4 waypoint1)
+ 
+14:
+(communicate_rock_data rover2 general waypoint3 waypoint4 waypoint1)
+ 
+15:
+(communicate_rock_data rover3 general waypoint0 waypoint0 waypoint1)
+ 
+16:
+(sample_soil rover0 rover0store waypoint4)
+ 
+17:
+(drop rover0 rover0store)
+ 
+18:
+(communicate_soil_data rover0 general waypoint4 waypoint4 waypoint1)
+ 
+19:
+(sample_rock rover0 rover0store waypoint4)
+ 
+20:
+(drop rover0 rover0store)
+ 
+21:
+(communicate_rock_data rover0 general waypoint4 waypoint4 waypoint1)
+ 
+22:
+(take_image rover1 waypoint2 objective3 camera2 colour)
+ 
+23:
+(calibrate rover1 camera2 objective1 waypoint2)
+ 
+24:
+(communicate_image_data rover1 general objective3 colour waypoint2 waypoint1)
+ 
+25:
+(take_image rover1 waypoint2 objective2 camera2 colour)
+ 
+26:
+(calibrate rover1 camera3 objective2 waypoint2)
+ 
+27:
+(take_image rover1 waypoint2 objective3 camera3 low_res)
+ 
+28:
+(communicate_image_data rover1 general objective2 colour waypoint2 waypoint1)
+ 
+29:
+(communicate_image_data rover1 general objective3 low_res waypoint2 waypoint1)
+ 
+30:
+(navigate rover0 waypoint4 waypoint3)
+ 
+31:
+(navigate rover2 waypoint4 waypoint1)
+ 
+32:
+(drop rover2 rover2store)
+ 
+33:
+(sample_rock rover2 rover2store waypoint1)
+ 
+34:
+(navigate rover2 waypoint1 waypoint4)
+ 
+35:
+(drop rover3 rover3store)
+ 
+36:
+(navigate rover3 waypoint0 waypoint4)
+ 
+37:
+(communicate_rock_data rover2 general waypoint1 waypoint4 waypoint1)
+ 
+38:
+(navigate rover3 waypoint4 waypoint3)
+ 
+39:
+(sample_soil rover3 rover3store waypoint3)
+ 
+40:
+(navigate rover3 waypoint3 waypoint4)
+ 
+41:
+(communicate_soil_data rover3 general waypoint3 waypoint4 waypoint1)
+ 
+
+Plan Validation details
+-----------------------
+
+Checking next happening (time 1)
+Deleting (at rover0 waypoint4)
+Adding (at rover0 waypoint6)
+Updating (energy rover0) (50) by 8 decrease
+
+Checking next happening (time 2)
+Adding (calibrated camera2 rover1)
+Updating (energy rover1) (50) by 2 decrease
+
+Checking next happening (time 3)
+Deleting (empty rover1store)
+Deleting (at_soil_sample waypoint0)
+Adding (full rover1store)
+Adding (have_soil_analysis rover1 waypoint0)
+Updating (energy rover1) (48) by 3 decrease
+
+Checking next happening (time 4)
+Deleting (empty rover2store)
+Deleting (at_rock_sample waypoint3)
+Adding (full rover2store)
+Adding (have_rock_analysis rover2 waypoint3)
+Updating (energy rover2) (50) by 5 decrease
+
+Checking next happening (time 5)
+Deleting (at rover1 waypoint0)
+Adding (at rover1 waypoint2)
+Updating (energy rover1) (45) by 8 decrease
+
+Checking next happening (time 6)
+WARNING: (communicate_soil_data rover1 general waypoint0 waypoint2 waypoint1) adds and deletes the literal (available rover1)
+WARNING: (communicate_soil_data rover1 general waypoint0 waypoint2 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_soil_data waypoint0)
+Adding (available rover1)
+Updating (energy rover1) (37) by 4 decrease
+
+Checking next happening (time 7)
+Deleting (empty rover0store)
+Deleting (at_soil_sample waypoint6)
+Adding (full rover0store)
+Adding (have_soil_analysis rover0 waypoint6)
+Updating (energy rover0) (42) by 3 decrease
+
+Checking next happening (time 8)
+Deleting (full rover0store)
+Adding (empty rover0store)
+
+Checking next happening (time 9)
+Deleting (at rover2 waypoint3)
+Adding (at rover2 waypoint4)
+Updating (energy rover2) (45) by 8 decrease
+
+Checking next happening (time 10)
+Deleting (at rover0 waypoint6)
+Adding (at rover0 waypoint4)
+Updating (energy rover0) (39) by 8 decrease
+
+Checking next happening (time 11)
+Deleting (at rover3 waypoint1)
+Adding (at rover3 waypoint0)
+Updating (energy rover3) (50) by 8 decrease
+
+Checking next happening (time 12)
+Deleting (empty rover3store)
+Deleting (at_rock_sample waypoint0)
+Adding (full rover3store)
+Adding (have_rock_analysis rover3 waypoint0)
+Updating (energy rover3) (42) by 5 decrease
+
+Checking next happening (time 13)
+WARNING: (communicate_soil_data rover0 general waypoint6 waypoint4 waypoint1) adds and deletes the literal (available rover0)
+WARNING: (communicate_soil_data rover0 general waypoint6 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover0)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_soil_data waypoint6)
+Adding (available rover0)
+Updating (energy rover0) (31) by 4 decrease
+
+Checking next happening (time 14)
+WARNING: (communicate_rock_data rover2 general waypoint3 waypoint4 waypoint1) adds and deletes the literal (available rover2)
+WARNING: (communicate_rock_data rover2 general waypoint3 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover2)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_rock_data waypoint3)
+Adding (available rover2)
+Updating (energy rover2) (37) by 4 decrease
+
+Checking next happening (time 15)
+WARNING: (communicate_rock_data rover3 general waypoint0 waypoint0 waypoint1) adds and deletes the literal (available rover3)
+WARNING: (communicate_rock_data rover3 general waypoint0 waypoint0 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover3)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_rock_data waypoint0)
+Adding (available rover3)
+Updating (energy rover3) (37) by 4 decrease
+
+Checking next happening (time 16)
+Deleting (empty rover0store)
+Deleting (at_soil_sample waypoint4)
+Adding (full rover0store)
+Adding (have_soil_analysis rover0 waypoint4)
+Updating (energy rover0) (27) by 3 decrease
+
+Checking next happening (time 17)
+Deleting (full rover0store)
+Adding (empty rover0store)
+
+Checking next happening (time 18)
+WARNING: (communicate_soil_data rover0 general waypoint4 waypoint4 waypoint1) adds and deletes the literal (available rover0)
+WARNING: (communicate_soil_data rover0 general waypoint4 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover0)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_soil_data waypoint4)
+Adding (available rover0)
+Updating (energy rover0) (24) by 4 decrease
+
+Checking next happening (time 19)
+Deleting (empty rover0store)
+Deleting (at_rock_sample waypoint4)
+Adding (full rover0store)
+Adding (have_rock_analysis rover0 waypoint4)
+Updating (energy rover0) (20) by 5 decrease
+
+Checking next happening (time 20)
+Deleting (full rover0store)
+Adding (empty rover0store)
+
+Checking next happening (time 21)
+WARNING: (communicate_rock_data rover0 general waypoint4 waypoint4 waypoint1) adds and deletes the literal (available rover0)
+WARNING: (communicate_rock_data rover0 general waypoint4 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover0)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_rock_data waypoint4)
+Adding (available rover0)
+Updating (energy rover0) (15) by 4 decrease
+
+Checking next happening (time 22)
+Deleting (calibrated camera2 rover1)
+Adding (have_image rover1 objective3 colour)
+Updating (energy rover1) (33) by 1 decrease
+
+Checking next happening (time 23)
+Adding (calibrated camera2 rover1)
+Updating (energy rover1) (32) by 2 decrease
+
+Checking next happening (time 24)
+WARNING: (communicate_image_data rover1 general objective3 colour waypoint2 waypoint1) adds and deletes the literal (available rover1)
+WARNING: (communicate_image_data rover1 general objective3 colour waypoint2 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_image_data objective3 colour)
+Adding (available rover1)
+Updating (energy rover1) (30) by 6 decrease
+
+Checking next happening (time 25)
+Deleting (calibrated camera2 rover1)
+Adding (have_image rover1 objective2 colour)
+Updating (energy rover1) (24) by 1 decrease
+
+Checking next happening (time 26)
+Adding (calibrated camera3 rover1)
+Updating (energy rover1) (23) by 2 decrease
+
+Checking next happening (time 27)
+Deleting (calibrated camera3 rover1)
+Adding (have_image rover1 objective3 low_res)
+Updating (energy rover1) (21) by 1 decrease
+
+Checking next happening (time 28)
+WARNING: (communicate_image_data rover1 general objective2 colour waypoint2 waypoint1) adds and deletes the literal (available rover1)
+WARNING: (communicate_image_data rover1 general objective2 colour waypoint2 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_image_data objective2 colour)
+Adding (available rover1)
+Updating (energy rover1) (20) by 6 decrease
+
+Checking next happening (time 29)
+WARNING: (communicate_image_data rover1 general objective3 low_res waypoint2 waypoint1) adds and deletes the literal (available rover1)
+WARNING: (communicate_image_data rover1 general objective3 low_res waypoint2 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover1)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_image_data objective3 low_res)
+Adding (available rover1)
+Updating (energy rover1) (14) by 6 decrease
+
+Checking next happening (time 30)
+Deleting (at rover0 waypoint4)
+Adding (at rover0 waypoint3)
+Updating (energy rover0) (11) by 8 decrease
+
+Checking next happening (time 31)
+Deleting (at rover2 waypoint4)
+Adding (at rover2 waypoint1)
+Updating (energy rover2) (33) by 8 decrease
+
+Checking next happening (time 32)
+Deleting (full rover2store)
+Adding (empty rover2store)
+
+Checking next happening (time 33)
+Deleting (empty rover2store)
+Deleting (at_rock_sample waypoint1)
+Adding (full rover2store)
+Adding (have_rock_analysis rover2 waypoint1)
+Updating (energy rover2) (25) by 5 decrease
+
+Checking next happening (time 34)
+Deleting (at rover2 waypoint1)
+Adding (at rover2 waypoint4)
+Updating (energy rover2) (20) by 8 decrease
+
+Checking next happening (time 35)
+Deleting (full rover3store)
+Adding (empty rover3store)
+
+Checking next happening (time 36)
+Deleting (at rover3 waypoint0)
+Adding (at rover3 waypoint4)
+Updating (energy rover3) (33) by 8 decrease
+
+Checking next happening (time 37)
+WARNING: (communicate_rock_data rover2 general waypoint1 waypoint4 waypoint1) adds and deletes the literal (available rover2)
+WARNING: (communicate_rock_data rover2 general waypoint1 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover2)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_rock_data waypoint1)
+Adding (available rover2)
+Updating (energy rover2) (12) by 4 decrease
+
+Checking next happening (time 38)
+Deleting (at rover3 waypoint4)
+Adding (at rover3 waypoint3)
+Updating (energy rover3) (25) by 8 decrease
+
+Checking next happening (time 39)
+Deleting (empty rover3store)
+Deleting (at_soil_sample waypoint3)
+Adding (full rover3store)
+Adding (have_soil_analysis rover3 waypoint3)
+Updating (energy rover3) (17) by 3 decrease
+
+Checking next happening (time 40)
+Deleting (at rover3 waypoint3)
+Adding (at rover3 waypoint4)
+Updating (energy rover3) (14) by 8 decrease
+
+Checking next happening (time 41)
+WARNING: (communicate_soil_data rover3 general waypoint3 waypoint4 waypoint1) adds and deletes the literal (available rover3)
+WARNING: (communicate_soil_data rover3 general waypoint3 waypoint4 waypoint1) adds and deletes the literal (channel_free general)
+Deleting (available rover3)
+Deleting (channel_free general)
+Adding (channel_free general)
+Adding (communicated_soil_data waypoint3)
+Adding (available rover3)
+Updating (energy rover3) (6) by 4 decrease
+Plan executed successfully - checking goal
+Plan valid
+Final value: 0 
+
+Successful plans:
+Value: 0
+ /home/jovyan/Desktop/pddl-falsification-llm-problems/results/nominal/instance-10.plan 0 
+

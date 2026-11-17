@@ -1,0 +1,11 @@
+problem,rovers,waypoints,cameras,objectives,init_facts,can_traverse,visible,in_sun,soil_samples,rock_samples,energy_min,energy_max,goals,planner_status,planner_s,plan_len,n_navigate,n_recharge,val_valid
+instance-1,1,4,1,2,48,6,12,1,3,3,50,50,3,ok,0.006,10,2,0,True
+instance-2,1,4,2,2,45,6,12,2,1,1,50,50,3,ok,0.005,8,0,0,True
+instance-3,2,4,2,2,59,10,12,2,1,3,50,50,3,ok,0.006,11,3,0,True
+instance-4,2,4,3,3,60,8,8,2,2,2,50,50,3,ok,0.006,8,1,0,True
+instance-5,2,4,3,3,68,10,12,1,3,2,50,50,7,ok,0.009,24,4,1,True
+instance-6,2,6,3,2,89,20,22,1,5,4,50,50,10,timeout,300,,,,
+instance-7,3,6,2,2,100,30,22,1,2,4,50,50,6,ok,0.009,18,3,0,True
+instance-8,4,6,4,3,133,40,26,3,3,4,50,50,8,ok,0.022,27,6,0,True
+instance-9,4,7,5,3,156,48,32,1,5,5,50,50,8,timeout,300,,,,
+instance-10,4,7,6,4,148,40,28,2,4,5,50,50,11,ok,0.035,41,11,0,True
