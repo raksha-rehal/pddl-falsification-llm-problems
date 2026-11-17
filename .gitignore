@@ -3,3 +3,4 @@ tools/
 __pycache__/
 results/generations/_*/
 results/_*.log
+.claude/settings.local.json
