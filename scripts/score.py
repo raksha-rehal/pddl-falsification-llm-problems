@@ -17,6 +17,7 @@ Usage: python scripts/score.py --run qwen3.8-27b_thinking
 import argparse
 import csv
 import json
+import math
 import re
 import subprocess
 from collections import defaultdict
@@ -42,6 +43,25 @@ CATEGORY_PREDICATES = {
                         "store_of", "empty"},
 }
 COMMUNICATE = {"communicate_soil_data", "communicate_rock_data", "communicate_image_data"}
+
+# A (instance, category) pair is "eligible" only if the nominal plan uses an action whose
+# preconditions the anomaly can break. E.g. instance-2's plan never navigates, so a blocked
+# path cannot make it fail. Every action consumes energy, so power loss is always eligible.
+ELIGIBLE_ACTIONS = {
+    "displaced_object": {"sample_soil", "sample_rock"},
+    "blocked_path": {"navigate"},
+    "power_loss": None,                                   # None = any plan
+    "communication_loss": COMMUNICATE,
+    "equipment_fault": {"sample_soil", "sample_rock", "calibrate", "take_image"},
+}
+
+
+def is_eligible(instance: str, category: str) -> bool:
+    needed = ELIGIBLE_ACTIONS[category]
+    if needed is None:
+        return True
+    actions = {a[0] for a in pu.plan_actions((NOMINAL / f"{instance}.plan").read_text())}
+    return bool(actions & needed)
 
 
 def category_of_predicate(pred: str, action: str = ""):
@@ -99,12 +119,13 @@ def score_record(rec: dict, prob_dir: Path) -> dict:
     row = {k: rec[k] for k in ("job_id", "instance", "category", "variant", "sample", "thinking")}
     usage = rec.get("usage") or {}
     row.update(finish_reason=rec.get("finish_reason", ""), completion_tokens=usage.get("completion_tokens", ""),
-               reasoning_chars=len(rec.get("reasoning", "")), seconds=rec.get("seconds", ""))
+               reasoning_chars=len(rec.get("reasoning", "")), seconds=rec.get("seconds", ""),
+               eligible=is_eligible(rec["instance"], rec["category"]))
     change, text = extract_pddl(rec.get("content", ""))
     row["change_text"] = change
     for k in ("extracted", "parses", "val_wellformed", "goals_same", "objects_same", "domain_same",
-              "metric_same", "valid_perturbation", "plan_fails", "small_change", "edit_in_category",
-              "category_agree", "nontrivial_failure"):
+              "metric_same", "valid_perturbation", "unchanged_file", "plan_fails", "small_change",
+              "edit_in_category", "category_agree", "nontrivial_failure"):
         row[k] = False
     row.update(n_changes="", changes="", failure_type="", fail_step="", fail_action="",
                unsat="", observed_category="", val_note="")
@@ -133,6 +154,8 @@ def score_record(rec: dict, prob_dir: Path) -> dict:
                      {k[0] for k, _, _ in d["fluents_changed"]})
     row["edit_in_category"] = bool(changed_preds) and changed_preds <= CATEGORY_PREDICATES[rec["category"]]
     row["small_change"] = 1 <= d["n_changes"] <= MAX_CHANGES
+    # The answer describes an anomaly (CHANGE: ...) but the file it wrote is identical to the nominal.
+    row["unchanged_file"] = d["n_changes"] == 0
 
     v = run_val(path, NOMINAL / f"{rec['instance']}.plan")
     row.update(val_wellformed=v["val_wellformed"], failure_type=v["failure_type"], fail_step=v["fail_step"],
@@ -152,6 +175,17 @@ def score_record(rec: dict, prob_dir: Path) -> dict:
     return row
 
 
+def wilson(k: int, n: int, z: float = 1.96):
+    """95% Wilson score interval for a proportion k/n, as percentages (lo, hi)."""
+    if n == 0:
+        return (0.0, 0.0)
+    p = k / n
+    d = 1 + z * z / n
+    c = (p + z * z / (2 * n)) / d
+    h = z * math.sqrt(p * (1 - p) / n + z * z / (4 * n * n)) / d
+    return (100 * (c - h), 100 * (c + h))
+
+
 def rate(rows, key):
     n = len(rows)
     k = sum(1 for r in rows if r[key] is True)
@@ -159,7 +193,11 @@ def rate(rows, key):
 
 
 def summarize(rows):
-    keys = ["valid_perturbation", "plan_fails", "small_change", "category_agree", "nontrivial_failure"]
+    keys = ["valid_perturbation", "unchanged_file", "plan_fails", "category_agree", "nontrivial_failure"]
+    el = [r for r in rows if r["eligible"]]
+    print(f"\n{len(el)}/{len(rows)} answers are for eligible (instance, category) pairs; "
+          "rates below use eligible pairs only")
+    rows = el
     for group in ("variant", "category"):
         print(f"\n== by {group}")
         print(f"{group:20s} " + " ".join(f"{k:>22s}" for k in keys))

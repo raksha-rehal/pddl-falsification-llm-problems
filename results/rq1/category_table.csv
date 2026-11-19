@@ -1,0 +1,7 @@
+category,qwen3.8-27b_nothinking|zero_shot,qwen3.8-27b_nothinking|few_shot,qwen3.8-27b_thinking|zero_shot,qwen3.8-27b_thinking|few_shot
+displaced_object,24/24,24/24,24/24,24/24
+blocked_path,17/21,21/21,20/21,21/21
+power_loss,8/24,15/24,24/24,24/24
+communication_loss,6/24,10/24,24/24,23/24
+equipment_fault,23/24,22/24,24/24,24/24
+all,78/117,92/117,116/117,116/117

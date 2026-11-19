@@ -1,0 +1,7 @@
+run,variant,n,valid_perturbation,unchanged_file,plan_fails,category_agree,nontrivial_failure,nontrivial_k,ci_lo,ci_hi,median_tokens,median_seconds,diversity_of_3
+qwen3.8-27b_nothinking,zero_shot,117,100.0,14.5,70.1,69.2,66.7,78,57.7,74.6,849,92,1.86
+qwen3.8-27b_nothinking,few_shot,117,100.0,11.1,81.2,79.5,78.6,92,70.4,85.1,844,90,2.11
+qwen3.8-27b_nothinking,all,234,100.0,12.8,75.6,74.4,72.6,170,66.6,78.0,844,92,1.99
+qwen3.8-27b_thinking,zero_shot,117,100.0,0.9,99.1,99.1,99.1,116,95.3,99.8,4601,460,1.77
+qwen3.8-27b_thinking,few_shot,117,100.0,0.9,99.1,99.1,99.1,116,95.3,99.8,3258,317,1.9
+qwen3.8-27b_thinking,all,234,100.0,0.9,99.1,99.1,99.1,232,96.9,99.8,3671,379,1.83
